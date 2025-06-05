@@ -8,7 +8,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-app.post('/upload', upload.single('image'), async (req, res) => {
+app.post('/api/images/upload', upload.single('image'), async (req, res) => {
   const file = req.file;
   const category = req.body.category || 'default';
   const filePath = `${category}/${Date.now()}_${file.originalname}`;
