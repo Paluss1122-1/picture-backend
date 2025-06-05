@@ -27,6 +27,18 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   res.json({ success: true, url: publicUrl });
 });
 
+app.get('/api/images/upload', (req, res) => {
+  res.send(`
+    <h1>Bilder hochladen</h1>
+    <form method="POST" action="/api/images/upload" enctype="multipart/form-data">
+      Kategorie: <input type="text" name="category" /><br/>
+      Bilder: <input type="file" name="images" multiple /><br/>
+      <button type="submit">Hochladen</button>
+    </form>
+  `);
+});
+
+
 app.listen(3000, () => {
   console.log('Server läuft auf Port 3000');
 });
