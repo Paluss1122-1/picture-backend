@@ -2,9 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 const { createClient } = require('@supabase/supabase-js');
-
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
+
+const cors = require('cors');
+app.use(cors());
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
@@ -37,7 +39,6 @@ app.get('/api/images/upload', (req, res) => {
     </form>
   `);
 });
-
 
 app.listen(3000, () => {
   console.log('Server läuft auf Port 3000');
